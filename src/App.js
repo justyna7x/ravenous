@@ -1,10 +1,11 @@
 import React from 'react';
-import './App.css';
+import './App.scss';
 
-import BusinessList from '../BusinessList/BusinessList';
-import SearchBar from '../SearchBar/SearchBar';
+import BusinessList from './components/BusinessList/BusinessList';
+import SearchBar from './components/SearchBar/SearchBar';
 
-import Yelp from '../../util/Yelp';
+import Yelp from './util/Yelp';
+import Loader from './components/SearchBar/LoaderAnimation';
 
 class App extends React.Component {
   constructor(props) {
@@ -24,12 +25,14 @@ class App extends React.Component {
   }
 
   render() {
-    return (
+    return (<>
       <div className="App">
         <h1>ravenous</h1>
         <SearchBar searchYelp={this.searchYelp} />
         <BusinessList businesses={this.state.businesses} />
       </div>
+      
+      </>
     );
   }
 }

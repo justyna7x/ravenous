@@ -4,6 +4,8 @@
     justify-content: space-between;
     width: 16.66rem;
     margin: 0 .5rem 2.3rem .5rem;
+    animation: fadeIn 1s 0.5s backwards;
+    
   }
   
   .Business .image-container {

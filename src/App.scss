@@ -1,5 +1,6 @@
 /* Universal Styles */
-
+@import 'animate.css';
+@import '~loaders.css/src/animations/triangle-skew-spin.scss';
 html {
   font-size: 18px;
 }
@@ -26,6 +27,7 @@ input:focus {
 
 .image-container img {
   width: 100%;
+  
 }
 
 /* App Styles */
@@ -41,4 +43,18 @@ h1 {
   font-family: Poppins, sans-serif;
   font-size: 1.8rem;
   color: #fff;
+ 
+}
+.loader-active {
+  display: block;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  width: 50px;
+  height: 50px;
+  animation: fadeOut infinite infinite;
+  animation-fill-mode: forwards;
 }

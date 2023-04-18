@@ -1,5 +1,7 @@
 import React from "react";
 import './SearchBar.css';
+import Loader from "react-loaders";
+
 
 class SearchBar extends React.Component{
     constructor(props){
@@ -7,7 +9,9 @@ class SearchBar extends React.Component{
         this.state = {
             term:'',
             location:'',
-            sortBy:'best_match'
+            sortBy:'best_match',
+            loading:false
+            
         };
         this.sortByOptions = {
             'Best Match': 'best_match',
@@ -53,28 +57,37 @@ class SearchBar extends React.Component{
     }
 
     handleSearch(event){
+        this.setState({loading:true})
         this.props.searchYelp(this.state.term, this.state.location, this.state.sortBy)
         event.preventDefault()
+        setTimeout(() => {
+            this.setState({loading:false})
+          }, "2000");
     }
 
     render(){
 
 
-        return(
-            <div className="SearchBar">
+        return(<>
+        
+            <div className="SearchBar" style ={{filter: this.state.loading ? 'blur(2px)':'blur(0px)'}} >
                 <div className="SearchBar-sort-options">
                     <ul>
                         {this.renderSortByOptions()}
                     </ul>
                 </div>
                 <div className="SearchBar-fields">
-                    <input onChange = {this.handleTermChange}placeholder="Search Businesses" />
+                    <input onChange = {this.handleTermChange}placeholder="Enter the category" />
                     <input onChange={this.handleLocationChange} placeholder="Where?" />
                 </div>
                 <div className="SearchBar-submit">
                     <a onClick={this.handleSearch}>Let's Go</a>
+                
                 </div>
+                
             </div>
+            {this.state.loading ? <Loader type="triangle-skew-spin"/> : <></>}
+           </> 
         )
     }
 }
